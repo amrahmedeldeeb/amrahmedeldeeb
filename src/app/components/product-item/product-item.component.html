@@ -1,1 +1,11 @@
-<p>product-item works!</p>
+<div class="card">
+    <a routerLink="/product/{{ product.id }}">
+        <img src="{{ product.url }}" class="card-img-top" alt="{{ product.name }}">
+    </a>
+    <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">{{ product.description }}</p>
+        <p><strong>Price: </strong>{{ product.price }}</p>
+        <a href="#" class="btn btn-primary">Add to Cart</a>
+    </div>
+</div>
