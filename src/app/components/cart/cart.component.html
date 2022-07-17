@@ -37,7 +37,7 @@
           <input type="email" class="form-control" required minlength="16" name="cardNumber" placeholder="(16-digit Number)" id="cardNumber" [(ngModel)]="cardNumber">
         </div>
         <div class="mb-3">
-           <button class="btn btn-primary" [disabled]="form.invalid" type="submit">Submit</button>
+           <button class="btn btn-primary" [disabled]="form.invalid" type="submit" routerLink="/success">Submit</button>
         </div>
       </form>
     </div>
