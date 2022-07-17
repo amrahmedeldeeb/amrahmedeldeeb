@@ -1,1 +1,50 @@
-<p>cart works!</p>
+<div class="" *ngIf="productList.length > 0">
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card mb-3" *ngFor="let product of productList">
+        <div class="row g-0">
+          <div class="col-md-3">
+            <img src="{{ product.url }}" class="img-fluid rounded-start" alt="{{ product.name }}">
+          </div>
+          <div class="col-md-9">
+            <div class="card-body">
+              <h5 class="card-title">{{ product.name }}</h5>
+              <p class="card-text">{{ product.description }}</p>
+              <div class="input-group w-50">
+                <button class="btn btn-outline-secondary" type="button">-</button>
+                <input type="text" class="form-control text-center" value="{{ product.quantity }}" minlength="1" aria-label="Example text with button addon" aria-describedby="">
+                <button class="btn btn-outline-secondary" type="button">+</button>
+              </div>
+              <p class="card-text">Price: <strong>{{product.price * product.quantity}}</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <form #form="ngForm">
+        <div class="mb-3">
+          <label for="fullName" class="form-label"  >Full Name</label>
+          <input type="email" class="form-control" required minlength="3" name="fullName" placeholder="(minimum 3 characters)" id="fullName" [(ngModel)]="fullName">
+        </div>
+        <div class="mb-3">
+          <label for="address" class="form-label"  >Address</label>
+          <input type="email" class="form-control" required minlength="6" name="address" placeholder="(minimum 6 characters)" id="address" [(ngModel)]="address">
+        </div>
+        <div class="mb-3">
+          <label for="cardNumber" class="form-label" >Credit card number</label>
+          <input type="email" class="form-control" required minlength="16" name="cardNumber" placeholder="(16-digit Number)" id="cardNumber" [(ngModel)]="cardNumber">
+        </div>
+        <div class="mb-3">
+           <button class="btn btn-primary" [disabled]="form.invalid" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <button class="btn btn-danger" (click)="clearCart()">clear</button>
+
+</div>
+<div class="" *ngIf="productList.length == 0">
+  <div class="alert alert-danger">empty</div>
+</div>
