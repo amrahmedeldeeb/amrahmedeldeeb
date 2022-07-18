@@ -5,10 +5,11 @@ import { ConfirmationComponent } from './components/confirmation/confirmation.co
 import { ProductItemDetailComponent } from './components/product-item-detail/product-item-detail.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 const routes: Routes = [
-  {path:'cart', component: CartComponent},
-  {path:'home', component: ProductListComponent},
-  {path:'success', component: ConfirmationComponent},
-  {path:'product/:id', component: ProductItemDetailComponent}
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'cart', component: CartComponent },
+  { path: 'home', component: ProductListComponent },
+  { path: 'success', component: ConfirmationComponent },
+  { path: 'product/:id', component: ProductItemDetailComponent }
 ];
 
 @NgModule({
