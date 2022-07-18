@@ -1,5 +1,5 @@
 <div class="card">
-  <a routerLink="/product/{{ product.id }}">
+  <a (click)="onSelect(product)">
     <img src="{{ product.url }}" class="card-img-top" alt="{{ product.name }}">
   </a>
   <div class="card-body">

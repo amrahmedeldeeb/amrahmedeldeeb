@@ -13,7 +13,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.productList = this.cartService.getCart() || [];
-     console.log(this.productList);
   }
 
 
