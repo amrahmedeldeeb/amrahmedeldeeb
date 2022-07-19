@@ -11,7 +11,7 @@ import { ProductItemComponent } from './components/product-item/product-item.com
 import { ProductItemDetailComponent } from './components/product-item-detail/product-item-detail.component';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -29,7 +29,8 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

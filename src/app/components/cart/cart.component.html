@@ -23,21 +23,30 @@
       </div>
     </div>
     <div class="col-md-6">
-      <form #form="ngForm">
+      <!-- #form="ngForm" -->
+      <form  [formGroup]="myform" (ngSubmit)="onSubmit()">
         <div class="mb-3">
           <label for="fullName" class="form-label"  >Full Name</label>
-          <input type="email" class="form-control" required minlength="3" name="fullName" placeholder="(minimum 3 characters)" id="fullName" [(ngModel)]="fullName">
+          <input type="text" formControlName="fullName" class="form-control" required minlength="3" placeholder="(minimum 3 characters)" id="fullName" >
+          <div class="alert alert-danger" *ngIf="fullName.errors?.['required'] && fullName.dirty">Full Name Required</div>
+          <div class="alert alert-danger" *ngIf="fullName.errors?.['minlength'] && fullName.dirty">3</div>
         </div>
         <div class="mb-3">
           <label for="address" class="form-label"  >Address</label>
-          <input type="email" class="form-control" required minlength="6" name="address" placeholder="(minimum 6 characters)" id="address" [(ngModel)]="address">
+          <input type="email" formControlName="address" class="form-control" required minlength="6" name="address" placeholder="(minimum 6 characters)" id="address">
+          <div class="alert alert-danger" *ngIf="address.errors?.['required'] && address.dirty">Full Name Required</div>
+          <div class="alert alert-danger" *ngIf="address.errors?.['minlength'] && address.dirty">3</div>
         </div>
         <div class="mb-3">
           <label for="cardNumber" class="form-label" >Credit card number</label>
-          <input type="email" class="form-control" required minlength="16" name="cardNumber" placeholder="(16-digit Number)" id="cardNumber" [(ngModel)]="cardNumber">
+          <input type="text" formControlName="cardNumber" class="form-control" required minlength="16" name="cardNumber" placeholder="(16-digit Number)" id="cardNumber">
+          <div class="alert alert-danger" *ngIf="cardNumber.errors?.['required'] && cardNumber.dirty">Full Name Required</div>
+          <div class="alert alert-danger" *ngIf="cardNumber.errors?.['minlength'] && cardNumber.dirty">3</div>
         </div>
         <div class="mb-3">
-           <button class="btn btn-primary" [disabled]="form.invalid" type="submit" routerLink="/success">Submit</button>
+          <!-- [disabled]="form.invalid"
+          routerLink="/success" -->
+           <button class="btn btn-primary"  type="submit" >Submit</button>
         </div>
       </form>
     </div>

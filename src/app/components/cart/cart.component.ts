@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Product } from 'src/app/models/Product';
 import { CartService } from '../../services/cart.service';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -10,10 +12,15 @@ export class CartComponent implements OnInit {
   productList = [];
   cartTotal: any = 0;
   // checkout form
-  fullName: string = "";
-  address: string = "";
-  cardNumber: number;
-  constructor(private cartService: CartService) { }
+
+  myform = new FormGroup({
+    fullName: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    address: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    cardNumber: new FormControl('', [Validators.required, Validators.minLength(16)]),
+  });
+
+
+  constructor(private cartService: CartService,private router: Router) { }
 
   ngOnInit(): void {
     this.productList = this.cartService.getCart() || [];
@@ -43,6 +50,35 @@ export class CartComponent implements OnInit {
       this.cartTotal -= price;
     }
 
+  }
+
+
+
+
+
+
+  get fullName() {
+    return this.myform.get('fullName');
+  }
+  get address() {
+    return this.myform.get('address');
+  }
+  get cardNumber() {
+    return this.myform.get('cardNumber');
+  }
+  onSubmit() {
+    // this.addTodo.emit(this.task);
+
+    // if (this.task.trim() === '') {
+    //   alert('Please enter a task');
+    //   return;
+    // }
+
+    if (this.myform.invalid) {
+      alert('Please enter a task');
+      return;
+    }
+    this.router.navigate(['/success']);
   }
 
 
