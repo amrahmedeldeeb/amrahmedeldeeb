@@ -1,2 +1,30 @@
-<p>product-item-detail works!</p>
-<!-- <div class="" *ngFor="let item of items">{{items.id}}</div> -->
+<div class="card-body">
+  <h5 class="card-title">{{ products?.name }}</h5>
+  <p class="card-text">{{ products?.description }}</p>
+  <p><strong>Price: </strong>{{ products?.price }}</p>
+  <div class="d-flex align-items-center">
+    <div class="input-group">
+      <button class="btn btn-outline-secondary" type="button" (click)="decreaseQuantity(products)">-</button>
+      <input type="text" class="form-control text-center" value="{{ products?.quantity }}" minlength="1" aria-label="Example text with button addon" aria-describedby="">
+      <button class="btn btn-outline-secondary" type="button" (click)="increaseQuantity(products)">+</button>
+    </div>
+    <button (click)="addToCart(products,productModal)" class="btn btn-primary w-100 ms-3">Add to Cart</button>
+   </div>
+</div>
+
+
+
+<ng-template #productModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="product-added-successfully">Product Added Successfully</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+
+    <p>Product: <strong>{{ products?.name }}</strong></p>
+    <p>Has been added to your Cart Successfully</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+  </div>
+</ng-template>

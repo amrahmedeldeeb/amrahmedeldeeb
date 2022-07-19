@@ -17,6 +17,9 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.productList = this.cartService.getCart() || [];
+    this.productList.forEach(product => {
+      this.cartTotal += product.price * product.quantity;
+    });
   }
   clearCart(): void {
     this.cartService.clearCart();
@@ -26,9 +29,20 @@ export class CartComponent implements OnInit {
 
   increaseQuantity(product: Product): void {
     product.quantity += 1;
+    this.totalCalculation(product.price, '+');
   }
   decreaseQuantity(product: Product): void {
     product.quantity -= 1;
+    this.totalCalculation(product.price, '-');
+  }
+
+  totalCalculation(price, type) {
+    if (type === '+') {
+      this.cartTotal += price;
+    } else {
+      this.cartTotal -= price;
+    }
+
   }
 
 
