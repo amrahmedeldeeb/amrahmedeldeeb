@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'cart', component: CartComponent },
   { path: 'home', component: ProductListComponent },
-  { path: 'success', component: ConfirmationComponent },
+  { path: 'success/:total', component: ConfirmationComponent },
   { path: 'product/:id', component: ProductItemDetailComponent }
 ];
 

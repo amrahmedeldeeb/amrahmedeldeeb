@@ -78,8 +78,12 @@ export class CartComponent implements OnInit {
       alert('Please enter a task');
       return;
     }
-    this.router.navigate(['/success']);
+    this.router.navigate(['/success', this.cartTotal]);
   }
 
+  // onSelect(product) {
+  //   this.router.navigate(['/product', product.id]);
+  //   // console.log(product.id);
+  // }
 
 }

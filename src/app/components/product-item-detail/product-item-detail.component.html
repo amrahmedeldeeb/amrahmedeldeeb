@@ -1,16 +1,38 @@
-<div class="card-body">
-  <h5 class="card-title">{{ products?.name }}</h5>
-  <p class="card-text">{{ products?.description }}</p>
-  <p><strong>Price: </strong>{{ products?.price }}</p>
-  <div class="d-flex align-items-center">
-    <div class="input-group">
-      <button class="btn btn-outline-secondary" type="button" (click)="decreaseQuantity(products)">-</button>
-      <input type="text" class="form-control text-center" value="{{ products?.quantity }}" minlength="1" aria-label="Example text with button addon" aria-describedby="">
-      <button class="btn btn-outline-secondary" type="button" (click)="increaseQuantity(products)">+</button>
+<div class="row">
+  <div class="col-md-8 mx-auto">
+    <div class="row">
+      <div class="col-12">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a class="text-warning" routerLink="/home">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ products?.name }}</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="col-md-6">
+        <div class="product-image">
+          <img src="{{ products?.url }}" class="img-fluid" alt="">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card-body h-100 d-flex flex-column justify-content-center">
+          <h5 class="card-title">{{ products?.name }}</h5>
+          <p class="card-text">{{ products?.description }}</p>
+          <p><strong>Price: </strong>${{ products?.price }}</p>
+          <div class="d-flex align-items-center">
+            <div class="input-group">
+              <button class="btn btn-outline-secondary" type="button" (click)="decreaseQuantity(products)">-</button>
+              <input type="text" class="form-control text-center" value="{{ products?.quantity }}" minlength="1" aria-label="Example text with button addon" aria-describedby="">
+              <button class="btn btn-outline-secondary" type="button" (click)="increaseQuantity(products)">+</button>
+            </div>
+            <button (click)="addToCart(products,productModal)" class="btn btn-warning w-100 ms-3">Add to Cart</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <button (click)="addToCart(products,productModal)" class="btn btn-primary w-100 ms-3">Add to Cart</button>
-   </div>
+  </div>
 </div>
+
 
 
 

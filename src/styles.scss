@@ -2,3 +2,12 @@
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+.empty-state {
+  text-align: center;
+  svg {
+    fill: rgb(187, 187, 187);
+  }
+  a {
+    color: rgb(255, 193, 7);
+  }
+}

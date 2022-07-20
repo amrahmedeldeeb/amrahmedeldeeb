@@ -1,0 +1,10 @@
+.navbar {
+  border-top: 5px solid rgba(var(--bs-warning-rgb), var(--bs-bg-opacity)) !important;
+  border-bottom: 2px solid #eee;
+}
+.navbar-brand {
+  img {
+    width: 60px;
+    height: auto;
+  }
+}
