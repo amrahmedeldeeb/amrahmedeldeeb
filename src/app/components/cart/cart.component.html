@@ -58,20 +58,21 @@
         <div class="mb-3">
           <label for="fullName" class="form-label">Full Name</label>
           <input type="text" formControlName="fullName" class="form-control" required minlength="3" placeholder="(minimum 3 characters)" id="fullName">
-          <div class="alert alert-danger" *ngIf="fullName.errors?.['required'] && fullName.dirty">Full Name Required</div>
-          <div class="alert alert-danger" *ngIf="fullName.errors?.['minlength'] && fullName.dirty">Enter minimum 3 characters</div>
+          <div class="alert alert-danger" *ngIf="fullName.errors?.['required'] && (fullName.dirty || fullName.touched)">Full Name Required</div>
+          <div class="alert alert-danger" *ngIf="fullName.errors?.['minlength'] && (fullName.dirty || fullName.touched)">Enter minimum 3 characters</div>
         </div>
         <div class="mb-3">
           <label for="address" class="form-label">Address</label>
           <input type="email" formControlName="address" class="form-control" required minlength="6" name="address" placeholder="(minimum 6 characters)" id="address">
-          <div class="alert alert-danger" *ngIf="address.errors?.['required'] && address.dirty">Address Required</div>
-          <div class="alert alert-danger" *ngIf="address.errors?.['minlength'] && address.dirty">Enter minimum 6 characters</div>
+          <div class="alert alert-danger" *ngIf="address.errors?.['required'] && (address.dirty || address.touched)">Address Required</div>
+          <div class="alert alert-danger" *ngIf="address.errors?.['minlength'] && (address.dirty || address.touched)">Enter minimum 6 characters</div>
         </div>
         <div class="mb-3">
           <label for="cardNumber" class="form-label">Credit card number</label>
           <input type="text" formControlName="cardNumber" class="form-control" required minlength="16" name="cardNumber" placeholder="(16-digit Number)" id="cardNumber">
-          <div class="alert alert-danger" *ngIf="cardNumber.errors?.['required'] && cardNumber.dirty">Credit card number</div>
-          <div class="alert alert-danger" *ngIf="cardNumber.errors?.['minlength'] && cardNumber.dirty">Enter minimum 16 characters</div>
+          <div class="alert alert-danger" *ngIf="cardNumber.errors?.['required'] && (cardNumber.dirty || cardNumber.touched)">Credit card number required</div>
+          <div class="alert alert-danger" *ngIf="cardNumber.errors?.['minlength'] && (cardNumber.dirty || cardNumber.touched)">Enter minimum 16 characters</div>
+          <div class="alert alert-danger" *ngIf="cardNumber.errors?.['pattern'] && (cardNumber.dirty || cardNumber.touched)">only numbers allowed</div>
         </div>
         <div class="mb-3">
           <!-- [disabled]="form.invalid"

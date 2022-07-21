@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Product } from 'src/app/models/Product';
 import { CartService } from '../../services/cart.service';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -16,11 +16,11 @@ export class CartComponent implements OnInit {
   myform = new FormGroup({
     fullName: new FormControl('', [Validators.required, Validators.minLength(3)]),
     address: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    cardNumber: new FormControl('', [Validators.required, Validators.minLength(16)]),
+    cardNumber: new FormControl('', [Validators.required, Validators.minLength(16), Validators.pattern("^[0-9]*$"),]),
   });
 
 
-  constructor(private cartService: CartService,private router: Router) { }
+  constructor(private cartService: CartService, private router: Router) { }
 
   ngOnInit(): void {
     this.productList = this.cartService.getCart() || [];
@@ -39,8 +39,13 @@ export class CartComponent implements OnInit {
     this.totalCalculation(product.price, '+');
   }
   decreaseQuantity(product: Product): void {
-    product.quantity -= 1;
-    this.totalCalculation(product.price, '-');
+    if (product.quantity <= 1) {
+      alert("product removed");
+      this.productList = this.productList.filter(p => p.id !== product.id);
+    } else {
+      product.quantity -= 1;
+      this.totalCalculation(product.price, '-');
+    }
   }
 
   totalCalculation(price, type) {

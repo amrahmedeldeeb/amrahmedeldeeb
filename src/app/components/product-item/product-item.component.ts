@@ -41,6 +41,7 @@ export class ProductItemComponent implements OnInit {
   }
   addToCart(product, productModal): void {
     this.cartService.addToCart(product);
+
     this.modalService.open(productModal, { ariaLabelledBy: 'product-added-successfully', centered: true }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
