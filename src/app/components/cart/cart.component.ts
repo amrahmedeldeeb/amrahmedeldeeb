@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, NgForm } from '@angular/forms';
 import { Product } from 'src/app/models/Product';
 import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
@@ -9,16 +9,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
+
+  fullName: string = "";
+  address: string = "";
+  cardNumber: string = "";
+
   productList = [];
   cartTotal: any = 0;
-  // checkout form
-
-  myform = new FormGroup({
-    fullName: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    address: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    cardNumber: new FormControl('', [Validators.required, Validators.minLength(16), Validators.pattern("^[0-9]*$"),]),
-  });
-
 
   constructor(private cartService: CartService, private router: Router) { }
 
@@ -55,40 +52,21 @@ export class CartComponent implements OnInit {
       this.cartTotal -= price;
     }
 
+
   }
-
-
-
-
-
-
-  get fullName() {
-    return this.myform.get('fullName');
-  }
-  get address() {
-    return this.myform.get('address');
-  }
-  get cardNumber() {
-    return this.myform.get('cardNumber');
-  }
-  onSubmit() {
-    // this.addTodo.emit(this.task);
-
-    // if (this.task.trim() === '') {
-    //   alert('Please enter a task');
-    //   return;
-    // }
-
-    if (this.myform.invalid) {
-      alert('Please enter a task');
-      return;
-    }
+  onSubmit(): void {
     this.router.navigate(['/success', this.cartTotal]);
   }
 
-  // onSelect(product) {
-  //   this.router.navigate(['/product', product.id]);
-  //   // console.log(product.id);
-  // }
+
+  onfullNameChange(change) {
+    this.fullName = change;
+  }
+  onAddressChange(change) {
+    this.address = change;
+  }
+  onCardNumberChange(change) {
+    this.cardNumber = change;
+  }
 
 }

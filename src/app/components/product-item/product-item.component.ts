@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from '../../models/Product';
 import { CartService } from '../../services/cart.service';
 import { ProductService } from '../../services/product.service';
@@ -12,6 +12,9 @@ import { Router } from '@angular/router';
 export class ProductItemComponent implements OnInit {
   closeResult = '';
   @Input() product: Product;
+  @Output() addToCart: EventEmitter<Product> = new EventEmitter();
+
+  cartTotalNumber: any;
   constructor(private router: Router,
     private cartService: CartService,
     private ProductService: ProductService,
@@ -39,18 +42,17 @@ export class ProductItemComponent implements OnInit {
       product.quantity -= 1;
     }
   }
-  addToCart(product, productModal): void {
-    this.cartService.addToCart(product);
-
+  addItemToCart(product: Product, productModal): void {
+    this.addToCart.emit(product);
     this.modalService.open(productModal, { ariaLabelledBy: 'product-added-successfully', centered: true }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
+
   onSelect(product) {
     this.router.navigate(['/product', product.id]);
-    // console.log(product.id);
   }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
